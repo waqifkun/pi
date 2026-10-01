@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portofolio Kelompok dan Dokumentasi Pekan Ilkomerz</title>
+  <meta name="description" content="Profil sepuluh anggota kelompok dan dokumentasi kegiatan Pekan Ilkomerz.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. TOKEN DESAIN
+       Dasar: hitam-putih murni. Warna cerah hanya untuk aksen.
+       ========================================================= */
+    :root {
+      --ink: #000000;
+      --paper: #ffffff;
+      --grey-700: #3d3d3d;
+      --grey-500: #6b6b6b;
+      --grey-300: #cfcfcf;
+      --grey-100: #f2f2f2;
+
+      /* Aksen cerah (semua terbaca dengan teks hitam di atasnya) */
+      --blue: #5b8cff;
+      --pink: #ff5c9e;
+      --yellow: #ffd60a;
+      --green: #2ee6a6;
+      --orange: #ff8a3d;
+
+      --font: "Inter", "Roboto", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      --nav-h: 64px;
+      --wrap: 1180px;
+    }
+
+    /* =========================================================
+       2. RESET DAN DASAR
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3, p { margin: 0; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .on-dark :focus-visible { outline-color: var(--yellow); }
+
+    .wrap { width: min(var(--wrap), 100% - 2.5rem); margin-inline: auto; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; overflow: hidden;
+      clip: rect(0 0 0 0); white-space: nowrap;
+    }
+    .icon { width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .icon--solid { fill: currentColor; stroke: none; }
+
+    /* =========================================================
+       3. NAVBAR (sticky)
+       ========================================================= */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      height: var(--nav-h);
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+    }
+    .nav__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .brand { display: inline-flex; align-items: center; gap: .6rem; font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+    .brand__mark { display: grid; grid-template-columns: 1fr 1fr; width: 26px; height: 26px; border: 2px solid var(--ink); }
+    .brand__mark i:nth-child(1) { background: var(--blue); }
+    .brand__mark i:nth-child(2) { background: var(--paper); }
+    .brand__mark i:nth-child(3) { background: var(--pink); border-radius: 0 0 0 100%; }
+    .brand__mark i:nth-child(4) { background: var(--ink); }
+
+    .nav__menu { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
+    .nav__link {
+      display: block; padding: .5rem .9rem; text-decoration: none; font-weight: 600; font-size: .95rem;
+      border-bottom: 3px solid transparent;
+    }
+    .nav__link:hover { border-bottom-color: var(--yellow); }
+    .nav__link[aria-current="true"] { border-bottom-color: var(--ink); }
+
+    .nav__toggle {
+      display: none; width: 44px; height: 44px; padding: 0;
+      background: var(--paper); border: 2px solid var(--ink); color: var(--ink);
+      place-items: center;
+    }
+    @media (max-width: 720px) {
+      .nav__toggle { display: grid; }
+      .nav__menu {
+        position: absolute; top: var(--nav-h); left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--paper); border-bottom: 2px solid var(--ink);
+        display: none;
+      }
+      .nav__menu.is-open { display: flex; }
+      .nav__link { padding: 1rem 1.25rem; border-bottom: 1px solid var(--grey-300); }
+      .nav__link[aria-current="true"] { background: var(--ink); color: var(--paper); }
+    }
+
+    /* =========================================================
+       4. HERO
+       ========================================================= */
+    .hero {
+      position: relative; overflow: hidden;
+      background: var(--ink); color: var(--paper);
+      padding-block: clamp(3.5rem, 9vw, 7rem);
+    }
+    .hero__grid { display: grid; gap: 3rem; grid-template-columns: 1.3fr .9fr; align-items: center; }
+    .badge {
+      display: inline-block; padding: .35rem .8rem;
+      font-size: .9rem; font-weight: 700;
+      background: var(--yellow); color: var(--ink);
+      border-radius: 999px;
+    }
+    .hero__title {
+      margin-top: 1.25rem;
+      font-size: clamp(2.6rem, 7.4vw, 6rem);
+      font-weight: 800; line-height: .98; letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+    .hero__lead { margin-top: 1.5rem; max-width: 52ch; font-size: 1.15rem; color: #e6e6e6; }
+    .hero__actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .8rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      padding: .75rem 1.25rem; min-height: 44px;
+      font-weight: 700; font-size: .95rem; text-decoration: none;
+      border: 2px solid var(--ink); background: var(--ink); color: var(--paper);
+      transition: background-color .15s, color .15s, transform .15s;
+    }
+    .btn:hover { background: var(--accent, var(--yellow)); color: var(--ink); }
+    .btn:active { transform: translateY(1px); }
+    .btn--ghost { background: var(--paper); color: var(--ink); }
+    .btn--ghost:hover { background: var(--accent, var(--pink)); }
+    .btn--light { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+    .btn--light:hover { background: var(--yellow); border-color: var(--yellow); }
+    .btn--outline-light { background: transparent; color: var(--paper); border-color: var(--paper); }
+    .btn--outline-light:hover { background: var(--pink); border-color: var(--pink); color: var(--ink); }
+
+    /* Komposisi bentuk geometris: satu momen animasi saat halaman dimuat */
+    .shapes { position: relative; width: min(100%, 420px); aspect-ratio: 1; margin-inline: auto; }
+    .shapes > * { position: absolute; animation: pop .7s cubic-bezier(.2,.9,.3,1.2) both; }
+    .shapes .s1 { inset: 0 24% 24% 0; background: var(--blue); border-radius: 50%; animation-delay: .05s; }
+    .shapes .s2 { inset: 30% 0 0 34%; background: var(--pink); animation-delay: .15s; }
+    .shapes .s3 { inset: 6% 4% auto auto; width: 34%; aspect-ratio: 1; background: var(--yellow); clip-path: polygon(50% 0, 100% 100%, 0 100%); animation-delay: .25s; }
+    .shapes .s4 { inset: auto auto 4% 6%; width: 36%; aspect-ratio: 1; background: var(--green); border-radius: 100% 0 0 0; animation-delay: .35s; }
+    .shapes .s5 { inset: 40% auto auto 14%; width: 30%; aspect-ratio: 1; border: 3px solid var(--paper); border-radius: 50%; animation-delay: .45s; }
+    @keyframes pop { from { opacity: 0; transform: scale(.4) rotate(-12deg); } to { opacity: 1; transform: none; } }
+
+    @media (max-width: 860px) {
+      .hero__grid { grid-template-columns: 1fr; }
+      .shapes { width: min(70%, 300px); margin-inline: 0; }
+    }
+
+    /* =========================================================
+       5. SEKSI UMUM
+       ========================================================= */
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+    .section__head { max-width: 62ch; margin-bottom: 2.5rem; }
+    .section__title { font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; letter-spacing: -.035em; line-height: 1.05; }
+    .section__desc { margin-top: .9rem; color: var(--grey-700); font-size: 1.05rem; }
+    .section--dark { background: var(--ink); color: var(--paper); }
+    .section--dark .section__desc { color: #d6d6d6; }
+
+    /* =========================================================
+       6. PROFIL ANGGOTA
+       ========================================================= */
+    .members { display: grid; gap: 1.75rem; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+
+    .card {
+      --accent: var(--yellow);
+      display: flex; flex-direction: column;
+      background: var(--paper); border: 2px solid var(--ink);
+      transition: transform .18s, box-shadow .18s;
+    }
+    .card:hover, .card:focus-within { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--accent); }
+
+    .card__photo {
+      position: relative; aspect-ratio: 4 / 3; overflow: hidden;
+      background: var(--accent); border-bottom: 2px solid var(--ink);
+      display: grid; place-items: center;
+    }
+.card__photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}    .card__deco { position: absolute; right: -18px; bottom: -18px; width: 84px; height: 84px; background: var(--ink); border-radius: 50%; }
+    .card__role {
+      position: absolute; left: .8rem; top: .8rem;
+      padding: .2rem .65rem; font-size: .8rem; font-weight: 700;
+      background: var(--paper); border: 2px solid var(--ink); border-radius: 999px;
+    }
+
+    .card__body { display: flex; flex-direction: column; gap: .9rem; padding: 1.15rem 1.25rem 1.35rem; flex: 1; }
+    .card__name { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+    .card__meta { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; color: var(--grey-700); font-size: .95rem; }
+    .card__meta li { display: flex; align-items: center; gap: .55rem; }
+
+    .socials { display: flex; gap: .5rem; margin-top: auto; }
+    .social {
+      display: grid; place-items: center; width: 40px; height: 40px;
+      background: var(--accent); color: var(--ink);
+      border: 2px solid var(--ink); border-radius: 50%;
+      transition: background-color .15s, color .15s;
+    }
+    .social:hover { background: var(--ink); color: var(--accent); }
+
+    .card__actions { display: flex; gap: .5rem; }
+    .card__actions .btn { flex: 1; padding-inline: .8rem; }
+    .btn--icon { flex: none !important; width: 44px; padding: 0 !important; }
+
+    /* =========================================================
+       7. GALERI (masonry dengan CSS columns)
+       ========================================================= */
+    .masonry { column-count: 3; column-gap: 1.25rem; }
+    @media (max-width: 960px) { .masonry { column-count: 2; } }
+    @media (max-width: 560px) { .masonry { column-count: 1; } }
+
+    .tile { break-inside: avoid; margin: 0 0 1.25rem; }
+    .tile__btn {
+      position: relative; display: block; width: 100%; padding: 0;
+      border: 2px solid var(--paper); background: var(--grey-700); color: inherit;
+      overflow: hidden; text-align: left;
+    }
+    .tile__media { width: 100%; }
+    .tile__media img, .tile__media video, .tile__media svg { width: 100%; height: 100%; object-fit: cover; }
+    .tile__btn:hover { border-color: var(--accent, var(--yellow)); }
+    .tile__btn:hover .tile__media { filter: brightness(1.08); }
+    .tile__play {
+      position: absolute; right: .75rem; top: .75rem;
+      display: grid; place-items: center; width: 40px; height: 40px;
+      background: var(--pink); color: var(--ink); border-radius: 50%;
+    }
+    .tile__cap { padding: .75rem .1rem 0; color: #e6e6e6; font-size: .95rem; }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100; display: none;
+      grid-template-rows: 1fr auto; padding: 1rem;
+      background: rgba(0, 0, 0, .94); color: var(--paper);
+    }
+    .lightbox.is-open { display: grid; }
+    .lightbox__stage { display: grid; place-items: center; min-height: 0; padding: 3rem 3.5rem 1rem; }
+    .lightbox__stage img, .lightbox__stage video, .lightbox__stage svg {
+      max-width: 100%; max-height: 100%; width: auto; height: auto; border: 2px solid var(--paper);
+    }
+    .lightbox__stage svg { width: min(90vw, 640px); }
+    .lightbox__cap { text-align: center; padding: .5rem 1rem 1rem; max-width: 70ch; margin-inline: auto; }
+    .lightbox__btn {
+      position: absolute; display: grid; place-items: center; width: 48px; height: 48px;
+      background: var(--paper); color: var(--ink); border: 2px solid var(--paper); border-radius: 50%;
+    }
+    .lightbox__btn:hover { background: var(--yellow); border-color: var(--yellow); }
+    .lightbox__close { top: 1rem; right: 1rem; }
+    .lightbox__prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+    .lightbox__next { right: 1rem; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 560px) {
+      .lightbox__stage { padding: 4rem .25rem 1rem; }
+      .lightbox__prev, .lightbox__next { top: auto; bottom: 5.5rem; transform: none; }
+    }
+
+    /* =========================================================
+       8. FOOTER DAN TOAST
+       ========================================================= */
+    .footer { border-top: 2px solid var(--ink); padding-block: 2rem; color: var(--grey-700); font-size: .95rem; }
+    .footer__inner { display: flex; flex-wrap: wrap; gap: .75rem 2rem; justify-content: space-between; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 1.5rem; z-index: 200;
+      transform: translate(-50%, 140%);
+      max-width: calc(100% - 2rem);
+      padding: .8rem 1.2rem; font-weight: 600;
+      background: var(--yellow); color: var(--ink); border: 2px solid var(--ink);
+      transition: transform .25s;
+    }
+    .toast.is-visible { transform: translate(-50%, 0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .shapes > * { animation: none; }
+      .card, .btn, .toast { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#beranda" aria-label="Ke beranda">
+        <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span data-bind="groupName">Nama Kelompok</span>
+      </a>
+
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+
+      <nav aria-label="Navigasi utama">
+        <ul class="nav__menu" id="navMenu">
+          <li><a class="nav__link" href="#beranda">Beranda</a></li>
+          <li><a class="nav__link" href="#profil">Profil Anggota</a></li>
+          <li><a class="nav__link" href="#galeri">Galeri Pekan Ilkomerz</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero on-dark" id="beranda">
+      <div class="wrap hero__grid">
+        <div>
+          <span class="badge" data-bind="groupName">Nama Kelompok</span>
+          <h1 class="hero__title">Sepuluh orang, Lima Hari, satu cerita.</h1>
+          <p class="hero__lead" data-bind="lead"></p>
+          <div class="hero__actions">
+            <a class="btn btn--light" href="#profil">Kenali anggota</a>
+            <a class="btn btn--outline-light" href="#galeri">Lihat galeri</a>
+          </div>
+        </div>
+        <div class="shapes" aria-hidden="true">
+          <span class="s1"></span><span class="s2"></span><span class="s3"></span><span class="s4"></span><span class="s5"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROFIL ANGGOTA ============ -->
+    <section class="section" id="profil">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title">Profil anggota</h2>
+          <p class="section__desc">Sepuluh anggota dengan latar belakang dan kota asal yang berbeda. Buka CV ATS masing-masing untuk melihat pengalaman dan keahliannya.</p>
+        </div>
+        <div class="members" id="members"></div>
+      </div>
+    </section>
+
+    <!-- ============ GALERI ============ -->
+    <section class="section section--dark on-dark" id="galeri">
+      <div class="wrap">
+        <div class="section__head">
+          <h2 class="section__title">Galeri Pekan Ilkomerz</h2>
+          <p class="section__desc">Foto dan video dari persiapan, lomba, sampai momen santai bersama. Klik salah satu untuk memperbesar.</p>
+        </div>
+        <div class="masonry" id="gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <span>Dibuat oleh <strong data-bind="groupName"></strong> untuk Pekan Ilkomerz <span data-bind="eventYear"></span>.</span>
+      <a href="#beranda">Kembali ke atas</a>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox on-dark" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau galeri">
+    <button class="lightbox__btn lightbox__close" id="lbClose" aria-label="Tutup">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox__btn lightbox__prev" id="lbPrev" aria-label="Sebelumnya">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox__btn lightbox__next" id="lbNext" aria-label="Berikutnya">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox__stage" id="lbStage"></div>
+    <p class="lightbox__cap" id="lbCap"></p>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* =========================================================
+       A. KONFIGURASI UTAMA: EDIT BAGIAN INI
+       ========================================================= */
+    const CONFIG = {
+      groupName: "PROXY RUBY",   // ganti dengan nama kelompok Anda
+      eventYear: "2026",
+      lead: "Kami ikut serta di Pekan Ilkomerz untuk belajar, berkarya, dan merayakan dunia ilmu komputer bersama-sama."
+    };
+
+    /* =========================================================
+       B. DATA 10 ANGGOTA
+       - 2 anggota pertama sudah lengkap sebagai contoh.
+       - 8 anggota sisanya dibuat otomatis oleh placeholderMember().
+         Ganti dengan objek asli dengan format yang sama, lalu
+         hapus baris "...Array.from" bila semua sudah terisi.
+       Field:
+         name   : nama lengkap
+         role   : badge kecil di foto (boleh dikosongkan "")
+         dob    : tanggal lahir format YYYY-MM-DD
+         city   : asal kota
+         photo  : path foto (kosongkan "" untuk memakai inisial)
+         cv     : path/URL PDF CV ATS (kosongkan "" bila belum ada)
+         socials: { linkedin, instagram, github } (hapus yang tidak ada)
+       ========================================================= */
+    const members = [
+      {
+        name: "Ahmad Zahran Razzaq",
+        role: "Ketua Kelompok",
+        dob: "2004-03-15",
+        city: "Bogor",
+        photo: "gambar/verifgagal.jpg",                                  // contoh: "assets/foto/aulia.jpg"
+        cv: "assets/cv/aulia-rahma-putri-ats.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/username",
+          instagram: "https://www.instagram.com/username",
+          github: "https://github.com/username"
+        }
+      },
+      {
+        name: "Abdullah Waqif Lautsi",
+        dob: "2007-01-25",
+        city: "Garut",
+        photo: "gambar/waqif.jpg",
+        cv: "cv/cv_Abdullah Waqif Lautsi.pdf",
+        socials: {
+          linkedin: "http://linkedin.com/in/abdullah-waqif-lautsi/",
+          instagram: "https://www.instagram.com/waqifuy",
+          github: "https://github.com/waqifkun",
+        }
+      },
+      // ---- Anggota 3 sampai 10: ganti placeholder dengan data asli ----
+      {
+        name: "Asa Dwi Hananto",
+        dob: "2006-02-10",
+        city: "Bekasi",
+        photo: "gambar/asa.jpg",
+        cv: "cv/cv_asa.pdf",
+        socials: {
+          linkedin: "http://linkedin.com/in/asa-dwi-hananto",
+          instagram: "http://instagram.com/asaduwhh",
+          github: "http://github.com/asadwihananto",
+        }
+      },
+{
+        name: "Audrey Mayore",
+        dob: "2008-01-07",
+        city: "Jakarta",
+        photo: "gambar/audrey.jpg",
+        cv: "cv/cv_Audrey.pdf",
+        socials: {
+          linkedin: "http://linkedin.com/in/audrey-mayoree",
+          instagram: "http://instagram.com/a.yoree",
+          github: "http://github.com/yoreemayyoree",
+        }
+      },
+    
+    {
+        name: "Fauziyah Salma Arafah ",
+        dob: "2007-01-25",
+        city: "Garut",
+        photo: "gambar/ara.jpg",
+        cv: "cv/cv_ara.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/fauziyahsalmaarafah/",
+          instagram: "https://www.instagram.com/username",
+          github: "https://github.com/arafah2912",
+        }
+      },
+    {
+        name: "I Made Arjuna Raja Nararya Subirman",
+        dob: "2007-05-15",
+        city: "Jakarta",
+        photo: "gambar/verifgagal.jpg",
+        cv: "cv/cv_Abdullah Waqif Lautsi.pdf",
+        socials: {
+          linkedin: "https://id.linkedin.com/in/arjuna-raja-507b61338",
+          instagram: "https://www.instagram.com/j3rreaux?stkn=MWg2bGh1OGIwNXMxeQ%3D%3D&utm_source=qr",
+          github: "https://github.com/Jerreaux",
+        }
+      },
+    {
+        name: "Muhammad Abdurrahman Hamonangan Hutagalung",
+        dob: "2006-12-18",
+        city: "Bengkulu",
+        photo: "gambar/oben.jpg",
+        cv: "cv/cv_oben.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/muhammad-abdurrahman-hamonangan-hutagalung-45236a431?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          instagram: "https://www.instagram.com/mhd.obn?stkn=MWxlZGtncXUzZ2liNQ==",
+          github: "https://github.com/vescnzz",
+        }
+      },
+    {
+        name: "Resultan Zain Raharja",
+        dob: "2007-01-25",
+        city: "Garut",
+        photo: "gambar/verifgagal.jpg",
+        cv: "cv/cv_Abdullah Waqif Lautsi.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/username",
+          instagram: "https://www.instagram.com/username",
+          github: "https://github.com/username",
+        }
+      },
+    {
+        name: "Valerian Dharmadyaksa Pradabumi",
+        dob: "2007-08-13",
+        city: "Bogor",
+        photo: "gambar/vale.jpg",
+        cv: "cv/cv_valerian.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/valerian-dharmadyaksa-pradabumi-b1b922419/",
+          instagram: "https://www.instagram.com/manjelaeko",
+          github: "https://github.com/RedStarsF1",
+        }
+      },
+    {
+        name: "Widyanto Yudha Bratama",
+        dob: "2007-01-25",
+        city: "Garut",
+        photo: "gambar/verifgagal.jpg",
+        cv: "cv/cv_yuda.pdf",
+        socials: {
+          linkedin: "https://www.linkedin.com/in/username",
+          instagram: "https://www.instagram.com/username",
+          github: "https://github.com/username",
+        }
+      },    ];
+
+    function placeholderMember(n) {
+      return {
+        name: "Nama Anggota " + String(n).padStart(2, "0"),
+        role: "",
+        dob: "2004-01-01",
+        city: "Kota Asal",
+        photo: "",
+        cv: "",
+        socials: { linkedin: "#", instagram: "#" }
+      };
+    }
+
+    /* =========================================================
+       C. DATA GALERI
+       type   : "image" atau "video"
+       src    : path file (kosongkan "" untuk memakai placeholder berwarna)
+       poster : gambar sampul video (opsional)
+       caption: cerita singkat tentang momen tersebut
+       ratio  : bentuk placeholder saja, mis. "4/5", "1/1", "16/9"
+       ========================================================= */
+    const gallery = [
+      { type: "image", src: "", ratio: "4/5",  caption: "Hari pertama: semua anggota berkumpul di depan gedung sebelum acara dibuka." },
+      { type: "video", src: "", ratio: "16/9", caption: "Cuplikan latihan presentasi. Ada yang gugup, ada yang sibuk mencatat." },
+      { type: "image", src: "", ratio: "1/1",  caption: "Makan siang bersama setelah sesi lomba pertama selesai." },
+      { type: "image", src: "", ratio: "3/4",  caption: "Merapikan poster dan materi pameran sampai larut malam." },
+      { type: "image", src: "", ratio: "4/3",  caption: "Foto kelompok lengkap sepuluh orang di panggung utama." },
+      { type: "video", src: "", ratio: "4/5",  caption: "Momen kemenangan kecil: jawaban kami akhirnya dinyatakan benar." },
+      { type: "image", src: "", ratio: "1/1",  caption: "Berbagi tugas jaga stan dan bergantian menyambut pengunjung." },
+      { type: "image", src: "", ratio: "16/9", caption: "Penutupan acara. Lelah, tapi semuanya tertawa." }
+    ];
+
+    /* =========================================================
+       D. LOGIKA TAMPILAN (umumnya tidak perlu diubah)
+       ========================================================= */
+    const ACCENTS = ["--yellow", "--blue", "--pink", "--green", "--orange"];
+    const ICONS = {
+      linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+      instagram: '<rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>',
+      github: '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>',
+      calendar: '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
+      pin: '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+      file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',
+      download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>'
+    };
+    const icon = (name, cls = "") =>
+      `<svg class="icon ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name]}</svg>`;
+    const playIcon = '<svg class="icon icon--solid" viewBox="0 0 24 24" aria-hidden="true"><polygon points="7 4 20 12 7 20 7 4"/></svg>';
+
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    const initials = (name) => name.trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+    const formatDate = (iso) => {
+      const d = new Date(iso + "T00:00:00");
+      return isNaN(d) ? iso : new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "long", year: "numeric" }).format(d);
+    };
+    const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+    /* Isi teks konfigurasi */
+    document.querySelectorAll("[data-bind]").forEach((el) => { el.textContent = CONFIG[el.dataset.bind] ?? ""; });
+    document.title = `${CONFIG.groupName} | Pekan Ilkomerz ${CONFIG.eventYear}`;
+
+    /* ---------- Kartu anggota ---------- */
+    function memberCard(m, i) {
+      const accent = ACCENTS[i % ACCENTS.length];
+      const photo = m.photo
+        ? `<img src="${esc(m.photo)}" alt="Foto ${esc(m.name)}" loading="lazy">`
+        : `<span class="card__initials" aria-hidden="true">${esc(initials(m.name))}</span>`;
+      const role = m.role ? `<span class="card__role">${esc(m.role)}</span>` : "";
+      const socials = Object.entries(m.socials || {})
+        .filter(([k]) => ICONS[k])
+        .map(([k, url]) => `<a class="social" href="${esc(url)}" target="_blank" rel="noopener noreferrer" aria-label="${k[0].toUpperCase() + k.slice(1)} ${esc(m.name)}">${icon(k)}</a>`)
+        .join("");
+
+      return `
+        <article class="card" style="--accent: var(${accent})">
+          <div class="card__photo">
+            ${photo}
+            <span class="card__deco" aria-hidden="true"></span>
+            ${role}
+          </div>
+          <div class="card__body">
+            <h3 class="card__name">${esc(m.name)}</h3>
+            <ul class="card__meta">
+              <li>${icon("calendar")}<span>${esc(formatDate(m.dob))}</span></li>
+              <li>${icon("pin")}<span>${esc(m.city)}</span></li>
+            </ul>
+            <div class="socials">${socials}</div>
+            <div class="card__actions">
+              <a class="btn" href="${esc(m.cv || "#")}" data-cv="${esc(m.cv)}" data-name="${esc(m.name)}" target="_blank" rel="noopener noreferrer">
+                ${icon("file")} Lihat CV ATS
+              </a>
+              <a class="btn btn--ghost btn--icon" href="${esc(m.cv || "#")}" data-cv="${esc(m.cv)}" data-name="${esc(m.name)}" download="CV-ATS-${slug(m.name)}.pdf" aria-label="Unduh CV ATS ${esc(m.name)}">
+                ${icon("download")}
+              </a>
+            </div>
+          </div>
+        </article>`;
+    }
+    document.getElementById("members").innerHTML = members.map(memberCard).join("");
+
+    /* CV belum diunggah: beri tahu, jangan buka halaman kosong */
+    const toast = document.getElementById("toast");
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 3000);
+    }
+    document.getElementById("members").addEventListener("click", (e) => {
+      const link = e.target.closest("[data-cv]");
+      if (link && !link.dataset.cv) {
+        e.preventDefault();
+        showToast(`CV ATS ${link.dataset.name} belum diunggah.`);
+      }
+    });
+
+    /* ---------- Galeri masonry ---------- */
+    function placeholderSVG(i, ratio) {
+      const [w, h] = ratio.split("/").map(Number);
+      const W = 400, H = Math.round((400 * h) / w);
+      const bg = `var(${ACCENTS[i % ACCENTS.length]})`;
+      const shapes = [
+        `<circle cx="${W * .7}" cy="${H * .35}" r="${W * .22}" fill="#000"/>`,
+        `<rect x="${W * .15}" y="${H * .45}" width="${W * .35}" height="${W * .35}" fill="#fff"/>`,
+        `<polygon points="${W * .55},${H * .95} ${W * .95},${H * .95} ${W * .95},${H * .6}" fill="#000"/>`
+      ];
+      return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder foto"><rect width="${W}" height="${H}" fill="${bg}"/>${shapes.join("")}</svg>`;
+    }
+    function mediaHTML(g, i, forLightbox = false) {
+      if (g.type === "video" && g.src) {
+        return forLightbox
+          ? `<video src="${esc(g.src)}" ${g.poster ? `poster="${esc(g.poster)}"` : ""} controls autoplay playsinline></video>`
+          : `<img src="${esc(g.poster || "")}" alt="" loading="lazy" style="aspect-ratio:${esc(g.ratio || "16/9")}">`;
+      }
+      if (g.src) return `<img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy">`;
+      return placeholderSVG(i, g.ratio || "4/3");
+    }
+    document.getElementById("gallery").innerHTML = gallery.map((g, i) => `
+      <figure class="tile" style="--accent: var(${ACCENTS[i % ACCENTS.length]})">
+        <button class="tile__btn" data-index="${i}" aria-label="Perbesar: ${esc(g.caption)}">
+          <div class="tile__media" style="${g.src && g.type !== "video" ? "" : `aspect-ratio:${esc(g.ratio || "4/3")}`}">${mediaHTML(g, i)}</div>
+          ${g.type === "video" ? `<span class="tile__play" aria-hidden="true">${playIcon}</span>` : ""}
+        </button>
+        <figcaption class="tile__cap">${esc(g.caption)}</figcaption>
+      </figure>`).join("");
+
+    /* ---------- Lightbox ---------- */
+    const lb = document.getElementById("lightbox");
+    const lbStage = document.getElementById("lbStage");
+    const lbCap = document.getElementById("lbCap");
+    let current = 0, lastFocus = null;
+
+    function renderLightbox() {
+      const g = gallery[current];
+      lbStage.innerHTML = mediaHTML(g, current, true);
+      lbCap.textContent = g.caption;
+    }
+    function openLightbox(i) {
+      lastFocus = document.activeElement;
+      current = i;
+      renderLightbox();
+      lb.classList.add("is-open");
+      document.body.style.overflow = "hidden";
+      document.getElementById("lbClose").focus();
+    }
+    function closeLightbox() {
+      lb.classList.remove("is-open");
+      lbStage.innerHTML = "";
+      document.body.style.overflow = "";
+      lastFocus && lastFocus.focus();
+    }
+    function step(dir) {
+      current = (current + dir + gallery.length) % gallery.length;
+      renderLightbox();
+    }
+    document.getElementById("gallery").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tile__btn");
+      if (btn) openLightbox(Number(btn.dataset.index));
+    });
+    document.getElementById("lbClose").addEventListener("click", closeLightbox);
+    document.getElementById("lbPrev").addEventListener("click", () => step(-1));
+    document.getElementById("lbNext").addEventListener("click", () => step(1));
+    lb.addEventListener("click", (e) => { if (e.target === lb || e.target === lbStage) closeLightbox(); });
+    document.addEventListener("keydown", (e) => {
+      if (!lb.classList.contains("is-open")) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+
+    /* ---------- Navbar: menu mobile dan penanda menu aktif ---------- */
+    const toggle = document.getElementById("navToggle");
+    const menu = document.getElementById("navMenu");
+    toggle.addEventListener("click", () => {
+      const open = menu.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", open);
+      toggle.setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
+    });
+    menu.addEventListener("click", (e) => {
+      if (e.target.closest("a")) { menu.classList.remove("is-open"); toggle.setAttribute("aria-expanded", "false"); }
+    });
+
+    const links = [...document.querySelectorAll(".nav__link")];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          links.forEach((a) => a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + en.target.id)));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach((s) => observer.observe(s));
+  </script>
+</body>
+</html>
