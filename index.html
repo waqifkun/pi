@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="gambar/logo.png">
 
   <style>
     /* =========================================================
@@ -80,6 +81,8 @@
     .brand__mark i:nth-child(2) { background: var(--paper); }
     .brand__mark i:nth-child(3) { background: var(--pink); border-radius: 0 0 0 100%; }
     .brand__mark i:nth-child(4) { background: var(--ink); }
+    .brand__logo { height: 36px; width: auto; }
+
 
     .nav__menu { display: flex; gap: .25rem; list-style: none; margin: 0; padding: 0; }
     .nav__link {
@@ -96,6 +99,7 @@
     }
     @media (max-width: 720px) {
       .nav__toggle { display: grid; }
+      .nav__toggle { display: grid; margin-left: auto; }
       .nav__menu {
         position: absolute; top: var(--nav-h); left: 0; right: 0;
         flex-direction: column; gap: 0;
@@ -308,7 +312,7 @@
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="#beranda" aria-label="Ke beranda">
-        <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <img class="brand__logo" src="gambar/logo.png" alt="">
         <span data-bind="groupName">Nama Kelompok</span>
       </a>
 
@@ -399,7 +403,7 @@
     const CONFIG = {
       groupName: "PROXY RUBY",   
       eventYear: "2026",
-      lead: "Kami ikut serta di Pekan Ilkomerz untuk belajar, berkarya, dan merayakan dunia ilmu komputer bersama-sama."
+      lead: "Kami ikut serta di Pekan Ilkomerz untuk belajar, berkarya, dan merayakan dunia ilmu komputer bersama-sama. Terimakasih KAK SAFIRA"
     };
 
     /* =========================================================
@@ -484,7 +488,7 @@
         name: "I Made Arjuna Raja Nararya Subirman",
         dob: "2007-05-15",
         city: "Jakarta",
-        photo: "gambar/verifgagal.jpg",
+        photo: "gambar/juna.jpg",
         cv: "",
         socials: {
           linkedin: "https://id.linkedin.com/in/arjuna-raja-507b61338",
@@ -562,14 +566,25 @@
        ratio  : bentuk placeholder saja, mis. "4/5", "1/1", "16/9"
        ========================================================= */
     const gallery = [
+      { type: "image", src: "gambar/firstday.jpg", ratio: "4/5",  caption: "Pertama kali ruby ngumpul huhu." },
       { type: "image", src: "gambar/day1.jpg", ratio: "4/5",  caption: "Hari pertama: semua anggota berkumpul di depan gedung setelah acara dibuka." },
-      { type: "video", src: "chant.mp4", ratio: "16/9", caption: "Cuplikan latihan melatih chant komtrups. Ada yang bingung, ada yang penting joget aja." },
+      { type: "video", src: "gambar/chant.mp4", poster: "",ratio: "16/9", caption: "Cuplikan latihan melatih chant komtrups. Ada yang bingung, ada yang penting joget aja." },
       { type: "image", src: "gambar/komtru1.jpg", ratio: "16/9",  caption: "Pertama kali melakukan supporteran" },
-      { type: "image", src: "", ratio: "3/4",  caption: "Merapikan poster dan materi pameran sampai larut malam." },
-      { type: "image", src: "", ratio: "4/3",  caption: "Foto kelompok lengkap sepuluh orang di panggung utama." },
-      { type: "video", src: "", ratio: "4/5",  caption: "Momen kemenangan kecil: jawaban kami akhirnya dinyatakan benar." },
-      { type: "image", src: "", ratio: "1/1",  caption: "Berbagi tugas jaga stan dan bergantian menyambut pengunjung." },
-      { type: "image", src: "", ratio: "16/9", caption: "Penutupan acara. Lelah, tapi semuanya tertawa." }
+      { type: "image", src: "gambar/pi_day3.jpg", ratio: "5/4",  caption: "Hari ketiga kita have fun main main." },
+      { type: "image", src: "gambar/pi_day2.jpg", ratio: "4/3",  caption: "Hari kedua kita memecahkan semua teka teki yang ada" },
+      { type: "video", src: "gambar/waqifjoged.mp4", ratio: "4/3",  caption: "Joget brutalnya waqif." },
+      { type: "image", src: "gambar/pi_day4.jpg", ratio: "4/5",  caption: "Hari keempat kita melakukan pemilihan caketang cakomti." },
+      { type: "image", src: "gambar/komtrups2.jpg", ratio: "16/9", caption: "" },
+      { type: "video", src: "gambar/bagiin bunga.mp4", ratio: "9/16",  caption: "Kasih bunga ke ka safira." },
+      { type: "image", src: "gambar/randompic.jpg", ratio: "4/5", caption: "" },
+      { type: "image", src: "gambar/randompic1.jpg", ratio: "16/9", caption: "" },
+      { type: "image", src: "gambar/randompic2.jpg", ratio: "16/9", caption: "" },
+      { type: "image", src: "gambar/randompic3.jpg", ratio: "16/9", caption: "" },
+      { type: "image", src: "gambar/spectra.jpg", ratio: "16/9", caption: "" },
+      { type: "image", src: "gambar/lastday.jpg", ratio: "16/9", caption: "Hari Terakhir: terimakasih semuanya terimakasih pekan ilkomerz terimakasih kak safira." },
+
+
+
     ];
 
     /* =========================================================
@@ -669,15 +684,19 @@
       ];
       return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Placeholder foto"><rect width="${W}" height="${H}" fill="${bg}"/>${shapes.join("")}</svg>`;
     }
-    function mediaHTML(g, i, forLightbox = false) {
-      if (g.type === "video" && g.src) {
-        return forLightbox
-          ? `<video src="${esc(g.src)}" ${g.poster ? `poster="${esc(g.poster)}"` : ""} controls autoplay playsinline></video>`
-          : `<img src="${esc(g.poster || "")}" alt="" loading="lazy" style="aspect-ratio:${esc(g.ratio || "16/9")}">`;
-      }
-      if (g.src) return `<img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy">`;
-      return placeholderSVG(i, g.ratio || "4/3");
+  function mediaHTML(g, i, forLightbox = false) {
+  if (g.type === "video" && g.src) {
+    if (forLightbox) {
+      return `<video src="${esc(g.src)}" ${g.poster ? `poster="${esc(g.poster)}"` : ""} controls autoplay playsinline></video>`;
     }
+    const ratio = esc(g.ratio || "16/9");
+    return g.poster
+      ? `<img src="${esc(g.poster)}" alt="" loading="lazy" style="aspect-ratio:${ratio}">`
+      : `<video src="${esc(g.src)}#t=0.5" preload="metadata" muted playsinline style="aspect-ratio:${ratio}"></video>`;
+  }
+  if (g.src) return `<img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy">`;
+  return placeholderSVG(i, g.ratio || "4/3");
+}
     document.getElementById("gallery").innerHTML = gallery.map((g, i) => `
       <figure class="tile" style="--accent: var(${ACCENTS[i % ACCENTS.length]})">
         <button class="tile__btn" data-index="${i}" aria-label="Perbesar: ${esc(g.caption)}">
