@@ -253,11 +253,18 @@
       background: rgba(0, 0, 0, .94); color: var(--paper);
     }
     .lightbox.is-open { display: grid; }
-    .lightbox__stage { display: grid; place-items: center; min-height: 0; padding: 3rem 3.5rem 1rem; }
-    .lightbox__stage img, .lightbox__stage video, .lightbox__stage svg {
-      max-width: 100%; max-height: 100%; width: auto; height: auto; border: 2px solid var(--paper);
-    }
-    .lightbox__stage svg { width: min(90vw, 640px); }
+    .lightbox__stage {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 0; overflow: hidden; padding: 3rem 3.5rem 1rem;
+}
+.lightbox__stage img, .lightbox__stage video, .lightbox__stage svg {
+  max-width: 100%;
+  max-height: calc(100vh - 11rem);
+  max-height: calc(100dvh - 11rem);
+  width: auto; height: auto; object-fit: contain;
+  border: 2px solid var(--paper);
+}
+.lightbox__stage svg { width: min(90vw, 640px); }
     .lightbox__cap { text-align: center; padding: .5rem 1rem 1rem; max-width: 70ch; margin-inline: auto; }
     .lightbox__btn {
       position: absolute; display: grid; place-items: center; width: 48px; height: 48px;
@@ -390,7 +397,7 @@
        A. KONFIGURASI UTAMA: EDIT BAGIAN INI
        ========================================================= */
     const CONFIG = {
-      groupName: "PROXY RUBY",   // ganti dengan nama kelompok Anda
+      groupName: "PROXY RUBY",   
       eventYear: "2026",
       lead: "Kami ikut serta di Pekan Ilkomerz untuk belajar, berkarya, dan merayakan dunia ilmu komputer bersama-sama."
     };
@@ -414,14 +421,14 @@
       {
         name: "Ahmad Zahran Razzaq",
         role: "Ketua Kelompok",
-        dob: "2004-03-15",
-        city: "Bogor",
-        photo: "gambar/verifgagal.jpg",                                  // contoh: "assets/foto/aulia.jpg"
-        cv: "assets/cv/aulia-rahma-putri-ats.pdf",
+        dob: "2007-03-14",
+        city: "Tasikmalaya",
+        photo: "gambar/zahran.jpg",                                  // contoh: "assets/foto/aulia.jpg"
+        cv: "cv/cv_zahran.pdf",
         socials: {
-          linkedin: "https://www.linkedin.com/in/username",
-          instagram: "https://www.instagram.com/username",
-          github: "https://github.com/username"
+          linkedin: "https://www.linkedin.com/in/ahmad-zahran-razzaq-04b9b130a/?isSelfProfile=true",
+          instagram: "https://www.instagram.com/zahreeenn_/",
+          github: "https://github.com/ahmadzahrannn1-dotcom"
         }
       },
       {
@@ -436,7 +443,6 @@
           github: "https://github.com/waqifkun",
         }
       },
-      // ---- Anggota 3 sampai 10: ganti placeholder dengan data asli ----
       {
         name: "Asa Dwi Hananto",
         dob: "2006-02-10",
@@ -464,8 +470,8 @@
     
     {
         name: "Fauziyah Salma Arafah ",
-        dob: "2007-01-25",
-        city: "Garut",
+        dob: "2006-12-29",
+        city: "Jakarta",
         photo: "gambar/ara.jpg",
         cv: "cv/cv_ara.pdf",
         socials: {
@@ -479,7 +485,7 @@
         dob: "2007-05-15",
         city: "Jakarta",
         photo: "gambar/verifgagal.jpg",
-        cv: "cv/cv_Abdullah Waqif Lautsi.pdf",
+        cv: "",
         socials: {
           linkedin: "https://id.linkedin.com/in/arjuna-raja-507b61338",
           instagram: "https://www.instagram.com/j3rreaux?stkn=MWg2bGh1OGIwNXMxeQ%3D%3D&utm_source=qr",
@@ -500,14 +506,14 @@
       },
     {
         name: "Resultan Zain Raharja",
-        dob: "2007-01-25",
-        city: "Garut",
-        photo: "gambar/verifgagal.jpg",
+        dob: "2007-10-05",
+        city: "Serang",
+        photo: "gambar/eja.jpg",
         cv: "cv/cv_Abdullah Waqif Lautsi.pdf",
         socials: {
-          linkedin: "https://www.linkedin.com/in/username",
-          instagram: "https://www.instagram.com/username",
-          github: "https://github.com/username",
+          linkedin: "https://www.linkedin.com/in/resultan-zain-raharja-11a0b141b?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+          instagram: "https://www.instagram.com/rejara_?stkn=MWVjaG5qcnQ2dHp6bQ%3D%3D&utm_source=qr",
+          github: "https://github.com/RezaResultan",
         }
       },
     {
@@ -524,14 +530,14 @@
       },
     {
         name: "Widyanto Yudha Bratama",
-        dob: "2007-01-25",
-        city: "Garut",
-        photo: "gambar/verifgagal.jpg",
+        dob: "2007-03-22",
+        city: "Palu",
+        photo: "gambar/yuda.jpg",
         cv: "cv/cv_yuda.pdf",
         socials: {
-          linkedin: "https://www.linkedin.com/in/username",
+          linkedin: "http://linkedin.com/in/yudhabratama",
           instagram: "https://www.instagram.com/username",
-          github: "https://github.com/username",
+          github: "https://github.com/hello-worldcs",
         }
       },    ];
 
@@ -556,9 +562,9 @@
        ratio  : bentuk placeholder saja, mis. "4/5", "1/1", "16/9"
        ========================================================= */
     const gallery = [
-      { type: "image", src: "", ratio: "4/5",  caption: "Hari pertama: semua anggota berkumpul di depan gedung sebelum acara dibuka." },
-      { type: "video", src: "", ratio: "16/9", caption: "Cuplikan latihan presentasi. Ada yang gugup, ada yang sibuk mencatat." },
-      { type: "image", src: "", ratio: "1/1",  caption: "Makan siang bersama setelah sesi lomba pertama selesai." },
+      { type: "image", src: "gambar/day1.jpg", ratio: "4/5",  caption: "Hari pertama: semua anggota berkumpul di depan gedung setelah acara dibuka." },
+      { type: "video", src: "chant.mp4", ratio: "16/9", caption: "Cuplikan latihan melatih chant komtrups. Ada yang bingung, ada yang penting joget aja." },
+      { type: "image", src: "gambar/komtru1.jpg", ratio: "16/9",  caption: "Pertama kali melakukan supporteran" },
       { type: "image", src: "", ratio: "3/4",  caption: "Merapikan poster dan materi pameran sampai larut malam." },
       { type: "image", src: "", ratio: "4/3",  caption: "Foto kelompok lengkap sepuluh orang di panggung utama." },
       { type: "video", src: "", ratio: "4/5",  caption: "Momen kemenangan kecil: jawaban kami akhirnya dinyatakan benar." },
